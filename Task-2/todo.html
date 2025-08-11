@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f4f4;
+            background-image: url("kakashi-hatake-dark-5120x2880-18503.png");
+            background-size: cover;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        input, button {
+            padding: 8px;
+            margin: 5px 0;
+        }
+        button {
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 8px 12px;
+        }
+        button:hover {
+            background: #555;
+        }
+        #taskList {
+            list-style: none;
+            padding: 0;
+        }
+        #taskList li {
+            background: #eee;
+            margin: 5px 0;
+            padding: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #taskList button {
+            background: red;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <h1>To-Do List</h1>
+        <div>
+            <a href="contact.html">Contact</a>
+            <a href="todo.html">To-Do List</a>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>My Tasks</h2>
+    <input type="text" id="taskInput" placeholder="Enter new task">
+    <button id="addTaskBtn">Add Task</button>
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+document.getElementById("addTaskBtn").addEventListener("click", function() {
+    let taskInput = document.getElementById("taskInput");
+    let taskValue = taskInput.value.trim();
+    let taskList = document.getElementById("taskList");
+
+    if (taskValue) {
+        let li = document.createElement("li");
+        li.textContent = taskValue;
+
+        let removeBtn = document.createElement("button");
+        removeBtn.textContent = "X";
+        removeBtn.onclick = function() {
+            taskList.removeChild(li);
+        };
+
+        li.appendChild(removeBtn);
+        taskList.appendChild(li);
+        taskInput.value = "";
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f4f4;
+            background-image: url("kakashi-hatake-dark-5120x2880-18503.png");
+            background-size: cover;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 40px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        form input, form textarea, form button {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 8px 12px;
+        }
+        button:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <h1>Contact Form</h1>
+        <div>
+            <a href="contact.html">Contact</a>
+            <a href="todo.html">To-Do List</a>
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+    <h2>Contact Us</h2>
+    <form id="contactForm">
+        <label>Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+
+        <label>Message:</label>
+        <textarea name="message" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+    <p id="formMessage"></p>
+</div>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    let name = this.name.value.trim();
+    let email = this.email.value.trim();
+    let message = this.message.value.trim();
+    let formMessage = document.getElementById("formMessage");
+
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+    if (!name || !email || !message) {
+        formMessage.textContent = "All fields are required!";
+        formMessage.style.color = "red";
+    } else if (!email.match(emailPattern)) {
+        formMessage.textContent = "Invalid email format!";
+        formMessage.style.color = "red";
+    } else {
+        formMessage.textContent = "Form submitted successfully!";
+        formMessage.style.color = "green";
+        this.reset();
+    }
+});
+</script>
+
+</body>
+</html>
