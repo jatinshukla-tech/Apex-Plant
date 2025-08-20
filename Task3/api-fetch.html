@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Fetch Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f8f9fa;
+    }
+    nav {
+      background: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: lightblue;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 300px;
+      margin: 50px auto;
+    }
+    button {
+      margin-top: 15px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background: royalblue;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="responsive.html">Responsive Design</a>
+    <a href="carousel.html">Image Carousel</a>
+    <a href="api-fetch.html">API Fetch</a>
+  </nav>
+
+  <div class="card">
+    <h2>Random Joke</h2>
+    <p id="joke">Click the button to get a joke</p>
+    <button onclick="getJoke()">Get Joke</button>
+  </div>
+
+  <script>
+    async function getJoke() {
+      const response = await fetch('https://official-joke-api.appspot.com/random_joke');
+      const data = await response.json();
+      document.getElementById('joke').innerText = data.setup + " - " + data.punchline;
+    }
+  </script>
+</body>
+</html>

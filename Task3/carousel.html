@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Carousel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f0f0f0;
+    }
+    nav {
+      background: #333;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: lightblue;
+    }
+    .carousel {
+      position: relative;
+      width: 600px;
+      max-width: 90%;
+      margin: 50px auto;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .carousel img {
+      width: 100%;
+      display: none;
+    }
+    .carousel img.active {
+      display: block;
+    }
+    .buttons {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+    button {
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="responsive.html">Responsive Design</a>
+    <a href="carousel.html">Image Carousel</a>
+    <a href="api-fetch.html">API Fetch</a>
+  </nav>
+
+  <div class="carousel">
+    <img src="ultra-instinct-goku-5120x2880-19856.jpg" class="active">
+    <img src="wp2179943-naruto-quotes-wallpapers.jpg">
+    <img src="itachi'.webp">
+    <div class="buttons">
+      <button onclick="prev()">&#10094;</button>
+      <button onclick="next()">&#10095;</button>
+    </div>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.carousel img');
+    let index = 0;
+
+    function showImage(i) {
+      images.forEach(img => img.classList.remove('active'));
+      images[i].classList.add('active');
+    }
+
+    function next() {
+      index = (index + 1) % images.length;
+      showImage(index);
+    }
+
+    function prev() {
+      index = (index - 1 + images.length) % images.length;
+      showImage(index);
+    }
+  </script>
+</body>
+</html>
